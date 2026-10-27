@@ -34,3 +34,22 @@ app.use((req, res, next) => {
 
     next()
 })
+
+// RESPONSE ENVELOPE
+function successResponse(res, message, data, status = 200) {
+    return res.status(status).json({
+        succes: true,
+        message,
+        data,
+        error: null
+    })
+}
+
+function errorResponse(res, message, status, details = null) {
+    return res.status(status).json({
+        succes: false,
+        message,
+        data: null,
+        error: details
+    })
+}
